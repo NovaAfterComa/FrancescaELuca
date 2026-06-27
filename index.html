@@ -8,986 +8,304 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ivory:#f7efe3;--paper:#fff8ed;--gold:#b88f55;--gold2:#8b6737;--ink:#2d241d;--muted:#76675a;--sage:#717b67;--wine:#7d2d25;--dark:#17110f;--shadow:0 24px 70px rgba(45,36,29,.23);--soft:0 14px 38px rgba(45,36,29,.13);--safe-top:env(safe-area-inset-top);--safe-bottom:env(safe-area-inset-bottom)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;min-height:100%;overflow:hidden;background:#f5eadc;color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif}body{background:radial-gradient(circle at 18% 8%,rgba(255,255,255,.8),transparent 30%),linear-gradient(135deg,#f8f0e5,#ead9c3 55%,#f8f1e8)}button,a{font:inherit}.app{position:relative;min-height:100svh}.intro{position:fixed;inset:0;z-index:50;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:calc(22px + var(--safe-top)) 18px calc(22px + var(--safe-bottom));overflow:hidden;background:radial-gradient(circle at 50% 18%,rgba(255,255,255,.72),transparent 28%),linear-gradient(145deg,#f4eadb,#dbc5a8 55%,#f7efe4);transition:opacity .8s ease,visibility .8s ease}.intro.hidden{opacity:0;visibility:hidden;pointer-events:none}.intro:before{content:"";position:absolute;inset:0;opacity:.2;background-image:linear-gradient(rgba(78,57,38,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(78,57,38,.10) 1px,transparent 1px);background-size:28px 28px}.intro-title{position:relative;text-align:center;margin:0}.intro-title small{display:block;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(45,36,29,.58);font-weight:700;margin-bottom:12px}.intro-title span{display:block;font-family:"Cormorant Garamond",serif;font-size:clamp(42px,12vw,64px);line-height:.9;font-weight:500;letter-spacing:-.05em}.intro-title em{display:block;font-family:"Cormorant Garamond",serif;font-size:clamp(28px,8vw,42px);font-style:italic;color:var(--gold2);line-height:1;margin-top:8px}.real-envelope{position:relative;width:min(360px,88vw);height:min(250px,61vw);border:0;padding:0;background:transparent;cursor:pointer;perspective:1200px;transform-style:preserve-3d;filter:drop-shadow(0 28px 35px rgba(61,42,24,.28))}.env-back{position:absolute;left:0;right:0;bottom:0;height:72%;border-radius:0 0 22px 22px;background:linear-gradient(135deg,rgba(255,255,255,.38),transparent 35%),linear-gradient(160deg,#e7d0ae,#caa06d);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),inset 0 -22px 34px rgba(81,52,28,.14);z-index:1}.paper-letter{position:absolute;left:8%;right:8%;bottom:26%;height:72%;z-index:2;border-radius:20px 20px 8px 8px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,247,235,.98)),repeating-linear-gradient(0deg,transparent 0 17px,rgba(184,144,88,.07) 18px);box-shadow:0 15px 35px rgba(67,45,26,.18),inset 0 0 0 1px rgba(184,144,88,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(42%) scale(.96);transition:transform 1.15s cubic-bezier(.16,.9,.18,1)}.paper-letter span{font-family:"Cormorant Garamond",serif;font-size:clamp(30px,8vw,42px);font-style:italic;color:#8b6737}.paper-letter small{margin-top:8px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(49,39,31,.52);font-weight:700}.env-front{position:absolute;left:0;right:0;bottom:0;height:72%;border-radius:0 0 22px 22px;overflow:hidden;background:linear-gradient(160deg,#d9ba8b,#bf9260);z-index:4}.env-front:before,.env-front:after{content:"";position:absolute;bottom:0;width:58%;height:100%;background:linear-gradient(145deg,#e3c69a,#bd8e5b);clip-path:polygon(0 0,100% 50%,0 100%)}.env-front:before{left:0}.env-front:after{right:0;transform:scaleX(-1)}.env-flap{position:absolute;left:0;right:0;top:0;height:55%;z-index:6;transform-origin:50% 100%;transform:rotateX(0deg);transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.2,.86,.18,1)}.env-flap:before{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,rgba(255,255,255,.38),transparent 36%),linear-gradient(145deg,#ead1ab,#c79a65);backface-visibility:hidden}.env-flap:after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(180deg,#c4935e,#e8cfaa);transform:rotateX(180deg);backface-visibility:hidden}.wax-seal{position:absolute;left:50%;top:48%;z-index:8;width:78px;height:78px;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:23px;font-weight:700;color:#f8dfbd;background:radial-gradient(circle at 35% 26%,rgba(255,255,255,.25),transparent 18%),linear-gradient(145deg,#9f3428,#641a16);box-shadow:0 10px 22px rgba(50,20,13,.3),inset 0 3px 6px rgba(255,255,255,.25),inset 0 -8px 14px rgba(36,6,4,.28);transition:transform .5s ease,opacity .5s ease}.open-label{position:relative;z-index:2;margin:0;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:rgba(49,39,31,.58);font-weight:700}.real-envelope.opening .wax-seal{opacity:0;transform:translate(-50%,-50%) scale(.45) rotate(-20deg)}.real-envelope.opening .env-flap{transform:rotateX(-178deg)}.real-envelope.opening .paper-letter{transform:translateY(-48%) scale(1)}
-.main{height:100svh;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;opacity:0;transform:translateY(12px);transition:opacity .8s ease,transform .8s ease}.invite-open .main{opacity:1;transform:none}.section{min-height:100svh;min-height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;display:grid;place-items:center;position:relative;padding:calc(22px + var(--safe-top)) 18px calc(26px + var(--safe-bottom));overflow:hidden}.section:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(rgba(80,60,40,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(80,60,40,.035) 1px,transparent 1px);background-size:34px 34px}.card{width:min(430px,100%);position:relative;border-radius:34px;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,248,236,.45));box-shadow:var(--shadow);border:1px solid rgba(184,144,88,.22);backdrop-filter:blur(14px);overflow:hidden}.card:before{content:"";position:absolute;inset:12px;border:1px solid rgba(184,144,88,.22);border-radius:24px;z-index:2;pointer-events:none}.inner{position:relative;z-index:3;padding:clamp(28px,7vw,42px) clamp(22px,6vw,34px);text-align:center}.eyebrow{margin:0 0 14px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);font-weight:800}.title,.display{font-family:"Cormorant Garamond",serif;color:#2d241d;font-weight:500;letter-spacing:-.045em}.display{font-size:clamp(48px,15vw,74px);line-height:.88;margin:18px 0}.display em{display:block;font-style:italic;color:var(--gold2);font-size:.74em;margin-top:8px}.title{font-size:clamp(38px,11vw,58px);line-height:.95;margin:0 0 18px}.lead{font-size:clamp(16px,4.2vw,19px);line-height:1.7;color:rgba(45,36,29,.78);margin:0 0 18px}.small{font-size:13px;line-height:1.65;color:var(--muted);margin:0}.divider{width:92px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.pill{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 17px;border-radius:999px;background:rgba(184,144,88,.12);border:1px solid rgba(184,144,88,.25);color:var(--gold2);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}.photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:#d8c1a3}.photo img,.location-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.hero .photo{border-radius:0 0 30px 30px;max-height:46svh}.gallery{display:grid;gap:16px}.polaroids{display:grid;grid-template-columns:1fr 1fr;gap:14px}.polaroid{background:#fff;padding:9px 9px 16px;border-radius:17px;box-shadow:0 16px 34px rgba(0,0,0,.1)}.polaroid:first-child{transform:rotate(-3deg)}.polaroid:last-child{transform:rotate(3deg)}.polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}.quote{padding:28px 22px;border-radius:26px;background:rgba(255,255,255,.45);border:1px solid rgba(184,144,88,.18);font-family:"Cormorant Garamond",serif;font-size:clamp(27px,8vw,34px);line-height:1.25;color:#43362a}.event-list{display:grid;gap:14px;margin-top:24px}.event-item{display:flex;gap:14px;align-items:center;text-align:left;padding:16px;border-radius:22px;background:rgba(255,255,255,.5);border:1px solid rgba(184,144,88,.18)}.icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:rgba(184,144,88,.14);color:var(--gold2)}.icon svg{width:25px;height:25px}.event-k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:800;margin-bottom:4px}.event-v{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.05;color:#2d241d}.event-s{font-size:14px;color:var(--muted);line-height:1.45;margin-top:4px}.location-card{overflow:hidden;border-radius:30px;background:#211918;box-shadow:var(--shadow);margin-top:8px}.location-img{height:300px;position:relative}.location-img:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(0,0,0,.78))}.location-name{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;text-align:left}.location-name h3{font-family:"Cormorant Garamond",serif;font-size:40px;line-height:1;margin:0 0 8px;font-weight:500}.location-name p{margin:0;font-size:14px;line-height:1.55;opacity:.9}.cta{display:grid;gap:13px;margin-top:22px}.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;padding:15px 18px;border-radius:999px;text-decoration:none;font-weight:800;border:1px solid rgba(184,144,88,.25);box-shadow:0 12px 28px rgba(45,36,29,.12);transition:transform .18s ease}.btn:active{transform:scale(.98)}.btn-map{background:#fff;color:#1f1a16}.btn-wa{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:0}.step-nav{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:25;display:grid;gap:9px;opacity:0;transition:.4s}.invite-open .step-nav{opacity:1}.dot{width:9px;height:9px;border-radius:999px;border:0;background:rgba(139,103,55,.28);padding:0}.dot.active{height:28px;background:var(--gold2)}.bottom-nav{position:fixed;left:50%;bottom:calc(12px + var(--safe-bottom));transform:translateX(-50%);z-index:24;display:flex;gap:10px;opacity:0;transition:.4s}.invite-open .bottom-nav{opacity:1}.nav-btn{border:1px solid rgba(139,103,55,.2);background:rgba(255,248,236,.72);backdrop-filter:blur(12px);border-radius:999px;padding:10px 14px;color:var(--ink);font-weight:800;box-shadow:0 10px 26px rgba(45,36,29,.12)}.reveal{opacity:0;transform:translateY(22px) scale(.985);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.visible{opacity:1;transform:none}@media(max-width:390px){.inner{padding:26px 20px}.event-v{font-size:25px}.location-img{height:270px}.step-nav{right:8px}.real-envelope{width:87vw;height:60vw}.wax-seal{width:68px;height:68px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
-
-/* =========================
-   FIX BUSTA REALISTICA - v2
-   - lembo attaccato al corpo
-   - carta invisibile prima dell'apertura
-   - sigillo piu piccolo e realistico
-========================= */
-.intro{
-  gap:24px !important;
-  background:
-    radial-gradient(circle at 50% 18%,rgba(255,255,255,.64),transparent 30%),
-    linear-gradient(145deg,#f5ebde 0%,#e7d3b6 58%,#f8efe4 100%) !important;
+:root{
+  --sand:#f6efe4;
+  --foam:#f7fbf7;
+  --aqua:#79b7b3;
+  --aqua-dark:#2f747a;
+  --blue:#153942;
+  --ink:#20333a;
+  --muted:#6c7f7f;
+  --paper:#fffaf1;
+  --shadow:0 24px 70px rgba(18,50,58,.18);
+  --soft:0 14px 38px rgba(18,50,58,.11);
+  --safe-top:env(safe-area-inset-top);
+  --safe-bottom:env(safe-area-inset-bottom);
 }
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:#e9f3ef}
+body{background:radial-gradient(circle at 12% 8%,rgba(255,255,255,.9),transparent 30%),radial-gradient(circle at 88% 14%,rgba(121,183,179,.24),transparent 34%),linear-gradient(135deg,#f8f1e7 0%,#e4f0ea 48%,#c8dddb 100%)}
+button,a{font:inherit}.app{height:100dvh;position:relative;overflow:hidden}
 
-.real-envelope{
-  --env-top: 22%;
-  --env-bottom: 8%;
-  --env-body-h: 70%;
-  --env-flap-h: 42%;
-  width:min(360px,88vw) !important;
-  height:min(232px,57vw) !important;
-  filter:drop-shadow(0 26px 30px rgba(60,42,25,.24)) !important;
-  transform:translateZ(0);
-}
+/* INTRO */
+.intro{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:calc(20px + var(--safe-top)) 18px calc(22px + var(--safe-bottom));background:radial-gradient(circle at 50% 24%,rgba(255,255,255,.75),transparent 33%),linear-gradient(145deg,#f8f1e6 0%,#dcece7 55%,#c7dcda 100%);transition:opacity .65s ease,visibility .65s ease}
+.intro.hidden{opacity:0;visibility:hidden;pointer-events:none}.intro-bg{position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(circle at 20% 14%,rgba(255,255,255,.85),transparent 25%),radial-gradient(circle at 80% 88%,rgba(47,116,122,.14),transparent 28%)}
+.intro-heading{position:relative;z-index:2;text-align:center}.intro-kicker{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:rgba(32,51,58,.56);font-weight:700;margin-bottom:10px}.intro-names{font-family:"Cormorant Garamond",serif;font-size:clamp(42px,12vw,64px);line-height:.92;font-weight:500;letter-spacing:-.055em;color:#1e3138}.intro-subtitle{margin-top:10px;font-family:"Cormorant Garamond",serif;font-size:clamp(28px,8vw,40px);line-height:1;font-style:italic;font-weight:600;color:var(--aqua-dark)}
 
-.real-envelope::after{
-  content:"";
-  position:absolute;
-  left:10%;
-  right:10%;
-  bottom:2%;
-  height:14px;
-  border-radius:50%;
-  background:rgba(66,43,22,.18);
-  filter:blur(8px);
-  z-index:0;
-}
+/* ENVELOPE - clean, no crease lines */
+.envelope{position:relative;width:min(360px,86vw);height:235px;border:0;padding:0;background:transparent;cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 24px 30px rgba(24,55,62,.20))}.envelope::after{content:"";position:absolute;left:11%;right:11%;bottom:10px;height:18px;border-radius:999px;background:rgba(22,48,55,.16);filter:blur(12px);z-index:0}
+.env-shell{position:absolute;left:0;right:0;bottom:22px;height:164px;z-index:2;overflow:visible}.env-back{position:absolute;inset:0;border-radius:16px 16px 22px 22px;background:linear-gradient(150deg,rgba(255,255,255,.42),transparent 35%),linear-gradient(165deg,#ead2ab 0%,#d4b07d 52%,#b99161 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.58),inset 0 -18px 30px rgba(82,56,33,.13),0 16px 30px rgba(24,55,62,.15)}
+.env-pocket{position:absolute;left:0;right:0;bottom:0;height:100%;border-radius:0 0 22px 22px;overflow:hidden;z-index:4;background:linear-gradient(180deg,rgba(255,255,255,.10),transparent 32%),linear-gradient(165deg,#e4c594 0%,#c39761 100%)}
+.env-pocket::before,.env-pocket::after{content:"";position:absolute;bottom:0;width:58%;height:100%;opacity:.78}.env-pocket::before{left:0;clip-path:polygon(0 0,100% 54%,0 100%);background:linear-gradient(52deg,rgba(255,255,255,.18),transparent 36%),linear-gradient(48deg,#e8c99b,#bd9161)}.env-pocket::after{right:0;clip-path:polygon(100% 0,0 54%,100% 100%);background:linear-gradient(128deg,rgba(255,255,255,.15),transparent 36%),linear-gradient(132deg,#dfbf8f,#b88856)}
+.env-flap{position:absolute;left:0;right:0;top:0;height:92px;z-index:5;transform-origin:50% 0;transform:rotateX(0deg);transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .35s ease .36s}.env-flap::before,.env-flap::after{content:"";position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);backface-visibility:hidden}.env-flap::before{background:radial-gradient(circle at 28% 20%,rgba(255,255,255,.22),transparent 30%),linear-gradient(145deg,#ecd3ae 0%,#c69b66 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.56),inset 0 -10px 18px rgba(83,52,24,.10)}.env-flap::after{background:linear-gradient(180deg,#ba8d5a 0%,#ead1ae 100%);transform:rotateX(180deg)}
+.paper{position:absolute;left:50%;bottom:42px;width:82%;height:145px;z-index:1;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:16px 16px 8px 8px;background:linear-gradient(180deg,#fffef8 0%,#f6fbf8 100%);box-shadow:0 12px 30px rgba(18,50,58,.15),inset 0 0 0 1px rgba(47,116,122,.15);opacity:0;transform:translate(-50%,78px) scale(.96);transition:opacity .18s ease .34s,transform 1s cubic-bezier(.18,.86,.18,1) .28s}.paper-title{font-family:"Cormorant Garamond",serif;font-size:clamp(28px,7vw,38px);font-style:italic;color:var(--aqua-dark)}.paper-subtitle{margin-top:8px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(32,51,58,.52);font-weight:700}
+.seal{position:absolute;left:50%;top:50%;z-index:8;width:52px;height:50px;transform:translate(-50%,-50%) rotate(-3deg);border-radius:46% 54% 48% 52%/52% 45% 55% 48%;display:grid;place-items:center;color:#eaf8f4;font-family:"Cormorant Garamond",serif;font-size:15px;font-weight:600;text-shadow:0 1px 1px rgba(7,31,36,.45);background:radial-gradient(circle at 32% 25%,rgba(255,255,255,.38),transparent 16%),radial-gradient(circle at 62% 74%,rgba(7,42,47,.30),transparent 32%),linear-gradient(145deg,#4c9aa0 0%,#235d63 55%,#163f46 100%);box-shadow:0 8px 16px rgba(16,48,55,.28),inset 0 2px 5px rgba(255,255,255,.25),inset 0 -8px 12px rgba(7,31,36,.30);transition:opacity .45s ease,transform .45s ease}.seal::before{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid rgba(232,252,247,.45);box-shadow:inset 0 1px 3px rgba(7,31,36,.22)}.seal::after{content:"";position:absolute;width:11px;height:10px;right:4px;bottom:8px;border-radius:50%;background:inherit;box-shadow:-34px -2px 0 -4px #2d6f75,-24px 13px 0 -5px #1d5157,-5px -30px 0 -6px #3f8b91;z-index:-1}.hint{position:relative;z-index:2;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:rgba(32,51,58,.58);font-weight:700}
+.envelope.open .seal{opacity:0;transform:translate(-50%,-50%) scale(.45) rotate(-15deg)}.envelope.open .env-flap{transform:rotateX(178deg);opacity:.2}.envelope.open .paper{opacity:1;transform:translate(-50%,-42px) scale(1)}
 
-.env-back,
-.env-front{
-  top:var(--env-top) !important;
-  bottom:auto !important;
-  height:var(--env-body-h) !important;
-  border-radius:2px 2px 20px 20px !important;
-}
+/* STEP SLIDES */
+.main{height:100dvh;width:100%;overflow:hidden;opacity:0;transform:translateY(8px);transition:opacity .55s ease,transform .55s ease}.invite-open .main{opacity:1;transform:none}.slides{height:100%;transition:transform .55s cubic-bezier(.22,.8,.22,1);will-change:transform}.section{height:100dvh;display:grid;place-items:center;padding:calc(18px + var(--safe-top)) 18px calc(22px + var(--safe-bottom));position:relative;overflow:hidden}.section::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(rgba(48,100,105,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(48,100,105,.06) 1px,transparent 1px);background-size:34px 34px}.section-content{width:min(430px,100%);max-height:calc(100dvh - 44px - var(--safe-top) - var(--safe-bottom));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:2px 0 4px;scrollbar-width:none}.section-content::-webkit-scrollbar{display:none}.card{width:100%;position:relative;border-radius:34px;background:linear-gradient(180deg,rgba(255,255,255,.70),rgba(244,251,247,.50));box-shadow:var(--shadow);border:1px solid rgba(47,116,122,.20);backdrop-filter:blur(14px);overflow:hidden}.card::before{content:"";position:absolute;inset:12px;border:1px solid rgba(47,116,122,.16);border-radius:24px;z-index:2;pointer-events:none}.inner{position:relative;z-index:3;padding:clamp(27px,7vw,42px) clamp(21px,6vw,34px);text-align:center}.eyebrow{margin:0 0 14px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--aqua-dark);font-weight:800}.title,.display{font-family:"Cormorant Garamond",serif;color:#1e3138;font-weight:500;letter-spacing:-.045em}.display{font-size:clamp(48px,15vw,74px);line-height:.88;margin:18px 0}.display em{display:block;font-style:italic;color:var(--aqua-dark);font-size:.74em;margin-top:8px}.title{font-size:clamp(38px,11vw,58px);line-height:.95;margin:0 0 18px}.lead{font-size:clamp(16px,4.2vw,19px);line-height:1.7;color:rgba(32,51,58,.78);margin:0 0 18px}.small{font-size:13px;line-height:1.65;color:var(--muted);margin:0}.divider{width:92px;height:1px;margin:24px auto;background:linear-gradient(90deg,transparent,#7dafaa,transparent)}.pill{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 17px;border-radius:999px;background:rgba(125,175,170,.14);border:1px solid rgba(47,116,122,.22);color:var(--aqua-dark);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}.photo{width:100%;aspect-ratio:4/5;overflow:hidden;background:#d8c1a3}.photo img,.location-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.hero .photo{border-radius:0 0 30px 30px;max-height:45dvh}.gallery{display:grid;gap:16px}.polaroids{display:grid;grid-template-columns:1fr 1fr;gap:14px}.polaroid{background:#fff;padding:9px 9px 16px;border-radius:17px;box-shadow:0 16px 34px rgba(0,0,0,.1)}.polaroid:first-child{transform:rotate(-2deg)}.polaroid:last-child{transform:rotate(2deg)}.polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}.quote{padding:28px 22px;border-radius:26px;background:rgba(255,255,255,.52);border:1px solid rgba(47,116,122,.18);font-family:"Cormorant Garamond",serif;font-size:clamp(27px,8vw,34px);line-height:1.25;color:#29494f}.event-list{display:grid;gap:14px;margin-top:24px}.event-item{display:flex;gap:14px;align-items:center;text-align:left;padding:16px;border-radius:22px;background:rgba(255,255,255,.52);border:1px solid rgba(47,116,122,.18)}.icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;background:rgba(125,175,170,.15);color:var(--aqua-dark)}.icon svg{width:25px;height:25px}.event-k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua-dark);font-weight:800;margin-bottom:4px}.event-v{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1.05;color:#1e3138}.event-s{font-size:14px;color:var(--muted);line-height:1.45;margin-top:4px}.location-card{overflow:hidden;border-radius:30px;background:#102d34;box-shadow:var(--shadow);margin-top:8px}.location-img{height:300px;position:relative}.location-img::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 18%,rgba(9,34,40,.82))}.location-name{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff;text-align:left}.location-name h3{font-family:"Cormorant Garamond",serif;font-size:40px;line-height:1;margin:0 0 8px;font-weight:500}.location-name p{margin:0;font-size:14px;line-height:1.55;opacity:.9}.cta{display:grid;gap:13px;margin-top:22px}.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;padding:15px 18px;border-radius:999px;text-decoration:none;font-weight:800;border:1px solid rgba(47,116,122,.18);box-shadow:0 12px 28px rgba(45,36,29,.12);transition:transform .18s ease}.btn:active{transform:scale(.98)}.btn-map{background:rgba(255,255,255,.86);color:#20333a}.btn-wa{background:linear-gradient(135deg,#5aaea4,#2d7f82);color:#fff;border:0}.step-nav{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:20;display:grid;gap:9px;opacity:0;transition:.4s}.invite-open .step-nav{opacity:1}.dot{width:9px;height:9px;border-radius:999px;border:0;background:rgba(47,116,122,.26);padding:0}.dot.active{height:28px;background:var(--aqua-dark)}.reveal{opacity:0;transform:translateY(18px) scale(.99);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}.section.active .reveal{opacity:1;transform:none}
+@media(max-width:390px){.envelope{height:215px}.env-shell{height:154px}.env-flap{height:86px}.paper{height:136px}.seal{width:48px;height:46px;font-size:14px}.inner{padding:25px 20px}.event-v{font-size:25px}.location-img{height:270px}.step-nav{right:8px}.polaroids{gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.slides{transition:none!important}}
 
-.env-back{
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.32),transparent 38%),
-    linear-gradient(160deg,#e7d0ab 0%,#cda46f 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.58),
-    inset 0 -20px 34px rgba(80,52,30,.12) !important;
-}
 
-.env-front{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.18),transparent 24%),
-    linear-gradient(160deg,#ddb987 0%,#c4925d 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.35),
-    inset 0 -16px 26px rgba(91,59,32,.14) !important;
-}
-
-.env-front::before,
-.env-front::after{
-  top:0 !important;
-  bottom:auto !important;
-  width:58% !important;
-  height:100% !important;
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.18),transparent 28%),
-    linear-gradient(145deg,#e3c293 0%,#bc8c58 100%) !important;
-  clip-path:polygon(0 0,100% 50%,0 100%) !important;
-}
-
-.env-front::before{left:0 !important;}
-.env-front::after{right:0 !important;transform:scaleX(-1) !important;}
-
-.env-flap{
-  top:var(--env-top) !important;
-  height:var(--env-flap-h) !important;
-  z-index:6 !important;
-  transform-origin:50% 0% !important;
-  transform:rotateX(0deg) translateZ(1px) !important;
-  transition:transform .95s cubic-bezier(.2,.78,.18,1) !important;
-}
-
-.env-flap::before,
-.env-flap::after{
-  clip-path:polygon(0 0,100% 0,50% 100%) !important;
-}
-
-.env-flap::before{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.34),transparent 42%),
-    linear-gradient(145deg,#ead1ab 0%,#c79b64 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.52),
-    0 9px 15px rgba(77,51,29,.11) !important;
-}
-
-.env-flap::after{
-  background:linear-gradient(180deg,#bf8f5b 0%,#ead0aa 100%) !important;
-}
-
-.paper-letter{
-  left:9% !important;
-  right:9% !important;
-  top:30% !important;
-  bottom:auto !important;
-  height:62% !important;
-  z-index:2 !important;
-  border-radius:15px 15px 8px 8px !important;
-  opacity:0 !important;
-  transform:translateY(48%) scale(.96) !important;
-  transition:
-    opacity .18s ease .28s,
-    transform 1.05s cubic-bezier(.18,.86,.18,1) .2s !important;
-}
-
-.paper-letter span{
-  font-size:clamp(26px,7vw,36px) !important;
-}
-
-.paper-letter small{
-  font-size:9px !important;
-   
-}
-
-.wax-seal{
-  width:56px !important;
-  height:56px !important;
-  top:61% !important;
-  font-size:17px !important;
-  letter-spacing:.02em !important;
-  color:#f6dfc3 !important;
-  background:
-    radial-gradient(circle at 34% 28%,rgba(255,255,255,.28),transparent 15%),
-    radial-gradient(circle at 60% 72%,rgba(63,12,9,.28),transparent 30%),
-    linear-gradient(145deg,#9e3a2c 0%,#702018 100%) !important;
-  box-shadow:
-    0 8px 16px rgba(50,20,13,.26),
-    inset 0 2px 5px rgba(255,255,255,.25),
-    inset 0 -7px 12px rgba(34,6,4,.26),
-    0 0 0 4px rgba(108,31,24,.18) !important;
-}
-
-.wax-seal::before{
-  content:"";
-  position:absolute;
-  inset:7px;
-  border-radius:50%;
-  border:1px solid rgba(255,224,190,.42);
-  box-shadow:inset 0 2px 5px rgba(37,8,5,.2);
-}
-
-.real-envelope.opening .wax-seal{
-  opacity:0 !important;
-  transform:translate(-50%,-50%) scale(.38) rotate(-18deg) !important;
-}
-
-.real-envelope.opening .env-flap{
-  transform:rotateX(-168deg) translateZ(2px) !important;
-}
-
-.real-envelope.opening .paper-letter{
+/* =========================================================
+   PATCH FINALE: biglietto sopra la busta + card senza effetto rettangolo
+========================================================= */
+.envelope.open .paper{
+  z-index:7 !important;
   opacity:1 !important;
-  transform:translateY(-58%) scale(1) !important;
+  transform:translate(-50%,-56px) scale(1) !important;
+  box-shadow:
+    0 18px 34px rgba(18,50,58,.18),
+    inset 0 0 0 1px rgba(47,116,122,.15) !important;
+}
+
+.envelope.open .env-flap{
+  z-index:3 !important;
+  transform:rotateX(178deg) translateY(-2px) !important;
+  opacity:.16 !important;
+}
+
+.envelope.open .env-pocket,
+.envelope.open .env-back{
+  transform:translateZ(0) !important;
+}
+
+.section-content{
+  padding:16px 0 18px !important;
+  max-height:calc(100dvh - 34px - var(--safe-top) - var(--safe-bottom)) !important;
+}
+
+.card{
+  border-radius:34px !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  box-shadow:
+    0 18px 42px rgba(18,50,58,.11),
+    0 1px 0 rgba(255,255,255,.45) inset !important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.76),rgba(244,251,247,.56)) !important;
+  background-clip:padding-box !important;
+}
+
+.card::before{
+  border-radius:24px !important;
+  box-shadow:none !important;
+}
+
+.hero .photo{
+  border-radius:0 0 30px 30px !important;
+  overflow:hidden !important;
+}
+
+.photo,
+.location-card,
+.quote,
+.event-item,
+.polaroid{
+  box-shadow:0 12px 28px rgba(18,50,58,.08) !important;
 }
 
 @media(max-width:390px){
-  .real-envelope{height:min(222px,56vw) !important;}
-  .wax-seal{width:52px !important;height:52px !important;font-size:16px !important;}
-}
-
-
-
-/* =========================
-   FIX BUSTA REALISTICA - v3 DEFINITIVO
-   Obiettivo: niente lembo staccato, niente carta visibile prima del tap,
-   sigillo piu piccolo e meno "clown".
-========================= */
-.intro{
-  gap:24px !important;
-}
-
-.real-envelope{
-  --body-top: 28%;
-  --body-h: 60%;
-  --flap-h: 37%;
-  width:min(360px,88vw) !important;
-  height:min(230px,56vw) !important;
-  perspective:1400px !important;
-  filter:drop-shadow(0 24px 30px rgba(60,42,25,.23)) !important;
-}
-
-/* ombra a terra */
-.real-envelope::after{
-  content:"";
-  position:absolute;
-  left:12%;
-  right:12%;
-  bottom:2%;
-  height:12px;
-  border-radius:999px;
-  background:rgba(65,42,24,.18);
-  filter:blur(9px);
-  z-index:0;
-}
-
-/* corpo della busta: parte posteriore e frontale perfettamente allineate */
-.env-back,
-.env-front{
-  top:var(--body-top) !important;
-  bottom:auto !important;
-  height:var(--body-h) !important;
-  border-radius:2px 2px 20px 20px !important;
-}
-
-.env-back{
-  z-index:1 !important;
-  background:
-    linear-gradient(135deg,rgba(255,255,255,.32),transparent 38%),
-    linear-gradient(160deg,#ead3ae 0%,#cfa46d 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.62),
-    inset 0 -20px 34px rgba(80,52,30,.13) !important;
-}
-
-.env-front{
-  z-index:4 !important;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.18),transparent 24%),
-    linear-gradient(160deg,#dfba86 0%,#c6945e 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.38),
-    inset 0 -16px 26px rgba(91,59,32,.14) !important;
-}
-
-.env-front::before,
-.env-front::after{
-  top:0 !important;
-  bottom:auto !important;
-  width:58% !important;
-  height:100% !important;
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.18),transparent 28%),
-    linear-gradient(145deg,#e4c393 0%,#bd8e59 100%) !important;
-  clip-path:polygon(0 0,100% 50%,0 100%) !important;
-}
-.env-front::before{left:0 !important;}
-.env-front::after{right:0 !important;transform:scaleX(-1) !important;}
-
-/* nuovo lembo: parte dallo stesso identico bordo superiore del corpo */
-.env-flap{
-  top:var(--body-top) !important;
-  height:var(--flap-h) !important;
-  z-index:6 !important;
-  transform-origin:50% 0% !important;
-  transform:rotateX(0deg) translateZ(1px) !important;
-  transform-style:preserve-3d !important;
-  opacity:1 !important;
-  transition:
-    transform .9s cubic-bezier(.22,.82,.22,1),
-    opacity .28s ease .42s !important;
-}
-.env-flap::before,
-.env-flap::after{
-  clip-path:polygon(0 0,100% 0,50% 100%) !important;
-}
-.env-flap::before{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.34),transparent 40%),
-    linear-gradient(145deg,#ecd2aa 0%,#c89b63 100%) !important;
-  box-shadow:0 8px 14px rgba(76,50,28,.10), inset 0 1px 0 rgba(255,255,255,.55) !important;
-}
-.env-flap::after{
-  background:linear-gradient(180deg,#be8e5a 0%,#ead0aa 100%) !important;
-}
-
-/* la carta parte completamente dietro la tasca: non deve vedersi prima */
-.paper-letter{
-  left:10% !important;
-  right:10% !important;
-  top:30% !important;
-  bottom:auto !important;
-  height:61% !important;
-  z-index:2 !important;
-  border-radius:16px 16px 8px 8px !important;
-  opacity:0 !important;
-  transform:translateY(62%) scale(.96) !important;
-  transition:
-    opacity .16s ease .56s,
-    transform 1.05s cubic-bezier(.18,.86,.18,1) .42s !important;
-}
-.paper-letter span{font-size:clamp(26px,7vw,36px) !important;}
-.paper-letter small{font-size:9px !important;}
-
-/* sigillo piu piccolo, piu basso e con bordo inciso */
-.wax-seal{
-  width:52px !important;
-  height:52px !important;
-  top:58% !important;
-  font-size:16px !important;
-  letter-spacing:.02em !important;
-  color:#f6dfc3 !important;
-  background:
-    radial-gradient(circle at 34% 27%,rgba(255,255,255,.26),transparent 15%),
-    radial-gradient(circle at 64% 76%,rgba(58,10,8,.28),transparent 32%),
-    linear-gradient(145deg,#a64031 0%,#6c1e18 100%) !important;
-  box-shadow:
-    0 8px 16px rgba(50,20,13,.24),
-    inset 0 2px 5px rgba(255,255,255,.23),
-    inset 0 -7px 12px rgba(34,6,4,.25) !important;
-}
-.wax-seal::before{
-  content:"";
-  position:absolute;
-  inset:6px;
-  border-radius:50%;
-  border:1px solid rgba(255,224,190,.42);
-  box-shadow:inset 0 2px 5px rgba(37,8,5,.18);
-}
-
-/* apertura: il lembo va dietro e sparisce, non resta come triangolo staccato */
-.real-envelope.opening .wax-seal{
-  opacity:0 !important;
-  transform:translate(-50%,-50%) scale(.36) rotate(-16deg) !important;
-}
-.real-envelope.opening .env-flap{
-  transform:rotateX(176deg) translateZ(-2px) !important;
-  opacity:0 !important;
-}
-.real-envelope.opening .paper-letter{
-  opacity:1 !important;
-  transform:translateY(-54%) scale(1) !important;
-}
-
-@media(max-width:390px){
-  .real-envelope{height:min(220px,56vw) !important;}
-  .wax-seal{width:49px !important;height:49px !important;font-size:15px !important;}
+  .section-content{
+    padding:14px 0 16px !important;
+  }
+  .envelope.open .paper{
+    transform:translate(-50%,-50px) scale(1) !important;
+  }
 }
 
 
 
 /* =========================================================
-   INTRO BUSTA - VERSIONE PREMIUM
-   Busta piu realistica + timbro effetto ceralacca.
+   PATCH CARD SHADOW - elimina effetto pagina rettangolare
+   Nota: su Safari mobile backdrop-filter + box-shadow puo creare
+   un alone rettangolare sotto le card. Qui lo rimuoviamo.
 ========================================================= */
-.intro{
-  position:fixed !important;
-  inset:0 !important;
-  z-index:9999 !important;
-  min-height:100svh !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  gap:26px !important;
-  padding:calc(22px + var(--safe-top)) 18px calc(22px + var(--safe-bottom)) !important;
-  overflow:hidden !important;
-  background:
-    radial-gradient(circle at 50% 28%, rgba(255,250,240,.92) 0%, rgba(247,235,214,.72) 34%, transparent 58%),
-    linear-gradient(145deg,#f6ead8 0%,#e4ceb0 54%,#f8efe3 100%) !important;
-  transition:opacity .8s ease, visibility .8s ease !important;
-}
-.intro.hidden{pointer-events:none !important; opacity:0 !important; visibility:hidden !important;}
-.intro::before{display:none !important;}
-.intro-bg{
-  position:absolute;
-  inset:0;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%23bfa47c' stroke-width='1' opacity='.13'%3E%3Cpath d='M0 0L180 180M180 0L0 180'/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.55), transparent 24%),
-    radial-gradient(circle at 80% 90%, rgba(151,111,63,.10), transparent 26%);
-  background-size:180px 180px, 100% 100%, 100% 100%;
-  opacity:.55;
-  pointer-events:none;
-}
-.intro-heading{
-  position:relative;
-  z-index:3;
-  text-align:center;
-  margin:0;
-  transform:translateY(4px);
-}
-.intro-kicker{
-  font-size:11px;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:rgba(48,39,31,.64);
-  font-weight:700;
-  margin-bottom:10px;
-}
-.intro-names{
-  font-family:"Cormorant Garamond", serif;
-  font-size:clamp(42px,12vw,64px);
-  line-height:.92;
-  font-weight:500;
-  letter-spacing:-.055em;
-  color:#2f251e;
-}
-.intro-subtitle{
-  margin-top:10px;
-  font-family:"Cormorant Garamond", serif;
-  font-size:clamp(28px,8vw,40px);
-  line-height:1;
-  font-style:italic;
-  font-weight:600;
-  color:#8b6737;
-}
-.envelope{
-  position:relative;
-  width:min(360px,86vw);
-  height:220px;
-  border:0;
-  padding:0;
-  background:transparent;
-  cursor:pointer;
-  perspective:1200px;
-  transform-style:preserve-3d;
-  filter:drop-shadow(0 24px 34px rgba(91,62,33,.24));
-  touch-action:manipulation;
-}
-.envelope::after{
-  content:"";
-  position:absolute;
-  left:9%;
-  right:9%;
-  bottom:-12px;
-  height:22px;
-  border-radius:50%;
-  background:rgba(78,51,26,.18);
-  filter:blur(13px);
-  z-index:-1;
-}
-.envelope-body{
-  position:absolute;
-  inset:0;
-  border-radius:15px;
-  overflow:hidden;
-  transform:translateZ(0);
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.36), transparent 38%),
-    linear-gradient(165deg,#edd6b4 0%,#d7b481 45%,#c99961 100%);
-  box-shadow:
-    0 18px 38px rgba(92,64,32,.20),
-    inset 0 1px 0 rgba(255,255,255,.62),
-    inset 0 -18px 28px rgba(105,68,32,.15),
-    inset 0 0 0 1px rgba(120,82,44,.12);
-}
-.envelope-body::before,
-.envelope-body::after{
-  content:"";
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  transform-origin:top;
-  transition:transform .9s cubic-bezier(.22,.81,.26,1);
-  z-index:2;
-  box-shadow:inset 0 0 18px rgba(90,57,27,.08);
-}
-.envelope-body::before{
-  left:0;
-  clip-path:polygon(0 0,100% 50%,0 100%);
-  background:
-    linear-gradient(128deg, rgba(255,255,255,.24) 0%, transparent 42%),
-    linear-gradient(45deg,#e8c99b 0%,#c99a60 100%);
-}
-.envelope-body::after{
-  right:0;
-  clip-path:polygon(100% 0,0 50%,100% 100%);
-  background:
-    linear-gradient(230deg, rgba(255,255,255,.20) 0%, transparent 42%),
-    linear-gradient(135deg,#e4c391 0%,#c18c52 100%);
-}
-.envelope-flap{
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:50%;
-  z-index:3;
-  transform-origin:top center;
-  transform:rotateX(0deg);
-  transform-style:preserve-3d;
-  transition:transform .9s cubic-bezier(.22,.81,.26,1);
-  backface-visibility:hidden;
-}
-.envelope-flap::before,
-.envelope-flap::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  backface-visibility:hidden;
-}
-.envelope-flap::before{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.36),transparent 42%),
-    linear-gradient(145deg,#efd7b4 0%,#c99a61 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.55),
-    inset 0 -10px 18px rgba(83,52,24,.12);
-}
-.envelope-flap::after{
-  background:
-    linear-gradient(180deg,#bd884f 0%,#ead2ad 100%);
-  transform:rotateX(180deg);
-}
-.envelope-texture{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-  opacity:.18;
-  mix-blend-mode:multiply;
-  background-image:
-    radial-gradient(circle at 24% 32%, rgba(110,76,41,.16) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 68%, rgba(255,255,255,.32) 0 1px, transparent 1.5px),
-    linear-gradient(90deg, rgba(95,63,31,.08) 1px, transparent 1px),
-    linear-gradient(rgba(95,63,31,.07) 1px, transparent 1px);
-  background-size:18px 18px, 24px 24px, 44px 44px, 44px 44px;
-  clip-path:inset(0 round 15px);
-}
-.envelope-creases{
-  position:absolute;
-  inset:0;
-  z-index:6;
-  pointer-events:none;
-  opacity:.42;
-  background:
-    linear-gradient(29deg, transparent 49.5%, rgba(99,64,31,.24) 50%, transparent 50.5%),
-    linear-gradient(-29deg, transparent 49.5%, rgba(255,255,255,.28) 50%, transparent 50.6%),
-    linear-gradient(151deg, transparent 49.5%, rgba(255,255,255,.22) 50%, transparent 50.6%),
-    linear-gradient(-151deg, transparent 49.5%, rgba(99,64,31,.18) 50%, transparent 50.5%);
-  clip-path:inset(0 round 15px);
-}
-.paper{
-  position:absolute;
-  left:50%;
-  bottom:0;
-  width:86%;
-  height:90%;
-  background:
-    linear-gradient(180deg,#fffdf8 0%,#fff6e9 100%);
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12), inset 0 0 0 1px rgba(184,144,88,.14);
-  transform:translate(-50%,100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:1;
-  opacity:0;
-  pointer-events:none;
-  transition:
-    opacity .12s ease .42s,
-    transform 1s cubic-bezier(.22,.81,.26,1) .42s;
-}
-.paper-content{text-align:center; padding:20px;}
-.paper-title{
-  font-family:"Cormorant Garamond", serif;
-  font-size:clamp(28px,7vw,40px);
-  color:#6b4b2d;
-  font-style:italic;
-}
-.paper-subtitle{
-  margin-top:10px;
-  font-size:12px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:#8a7862;
-}
-.envelope-seal{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(1) rotate(-2deg);
-  width:52px;
-  height:50px;
-  border-radius:46% 54% 48% 52% / 52% 45% 55% 48%;
-  background:
-    radial-gradient(circle at 35% 24%, rgba(255,223,190,.38) 0 7%, transparent 22%),
-    radial-gradient(circle at 62% 70%, rgba(61,9,6,.36) 0 4%, transparent 33%),
-    radial-gradient(circle at 50% 50%, #b84834 0%, #8f2a21 46%, #661814 100%);
-  color:#f8dfbd;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:"Cormorant Garamond", serif;
-  font-weight:600;
-  font-size:15px;
-  letter-spacing:.02em;
-  text-shadow:0 1px 1px rgba(64,13,9,.45);
-  box-shadow:
-    0 9px 16px rgba(69,23,15,.30),
-    inset 0 3px 5px rgba(255,228,200,.24),
-    inset 0 -8px 12px rgba(45,7,5,.30),
-    inset 0 0 0 1px rgba(255,218,180,.12);
-  z-index:8;
-  transition:opacity .5s ease, transform .5s ease;
-}
-.envelope-seal::before{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border-radius:50%;
-  border:1px solid rgba(255,220,184,.42);
-  box-shadow:inset 0 1px 3px rgba(55,8,5,.22);
-}
-.envelope-seal::after{
-  content:"";
-  position:absolute;
-  width:16px;
-  height:15px;
-  right:3px;
-  bottom:8px;
-  border-radius:48% 52% 45% 55%;
-  background:linear-gradient(145deg,#8f2a21,#641611);
-  box-shadow:
-    -38px -2px 0 -5px #9d3025,
-    -27px 15px 0 -6px #7a1e18,
-    -6px -34px 0 -7px #a73729;
-  z-index:-1;
-}
-.envelope-seal span{
-  position:relative;
-  z-index:2;
-  transform:translateY(-.5px);
-}
-.hint{
-  position:relative;
-  z-index:3;
-  font-size:11px;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color:#8a7862;
-  font-weight:700;
-}
-.envelope.open .envelope-body::before{transform:rotateX(180deg);}
-.envelope.open .envelope-body::after{transform:rotateX(-180deg);}
-.envelope.open .envelope-flap{transform:rotateX(-180deg);}
-.envelope.open .envelope-seal{
-  opacity:0;
-  transform:translate(-50%,-50%) scale(.45) rotate(-12deg);
-}
-.envelope.open .paper{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-@media(max-width:390px){
-  .envelope{height:200px;}
-  .envelope-seal{width:48px;height:46px;font-size:14px;}
+.section{
+  padding-left:20px !important;
+  padding-right:20px !important;
 }
 
-
-
-/* === PATCH: busta piu pulita, senza linee sovrapposte === */
-.envelope{
-  filter:drop-shadow(0 24px 32px rgba(91,62,33,.22));
-}
-.envelope-body{
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 22% 18%, rgba(255,255,255,.20), transparent 26%),
-    linear-gradient(165deg,#ecd2aa 0%,#d9b27a 52%,#c9955a 100%);
-  box-shadow:
-    0 18px 38px rgba(92,64,32,.18),
-    inset 0 1px 0 rgba(255,255,255,.52),
-    inset 0 -16px 26px rgba(105,68,32,.13),
-    inset 0 0 0 1px rgba(120,82,44,.10);
-}
-.envelope-body::before,
-.envelope-body::after{
-  box-shadow:none;
-}
-.envelope-body::before{
-  background:
-    linear-gradient(44deg, rgba(255,255,255,.10) 0%, transparent 42%),
-    linear-gradient(43deg,#e6c596 0%,#cc9d63 100%);
-}
-.envelope-body::after{
-  background:
-    linear-gradient(136deg, rgba(255,255,255,.10) 0%, transparent 42%),
-    linear-gradient(137deg,#e2bf8d 0%,#c18d52 100%);
-}
-.envelope-flap::before{
-  background:
-    radial-gradient(circle at 28% 22%, rgba(255,255,255,.16), transparent 28%),
-    linear-gradient(145deg,#ecd2ab 0%,#c99a61 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.42),
-    inset 0 -8px 14px rgba(83,52,24,.09);
-}
-.envelope-texture{
-  opacity:.12;
-  background-image:
-    radial-gradient(circle at 24% 32%, rgba(110,76,41,.14) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 68%, rgba(255,255,255,.26) 0 1px, transparent 1.5px);
-  background-size:18px 18px, 24px 24px;
-}
-.envelope-creases{
-  opacity:.18;
-  background:
-    linear-gradient(29deg, transparent 49.82%, rgba(96,64,33,.16) 50%, transparent 50.18%),
-    linear-gradient(-29deg, transparent 49.82%, rgba(255,255,255,.17) 50%, transparent 50.18%);
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%);
-  mix-blend-mode:multiply;
-}
-.envelope-creases::before,
-.envelope-creases::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  border-radius:15px;
-}
-.envelope-creases::before{
-  background:
-    linear-gradient(151deg, transparent 49.86%, rgba(255,255,255,.13) 50%, transparent 50.14%);
-  opacity:.65;
-}
-.envelope-creases::after{
-  box-shadow:
-    inset 0 10px 14px rgba(255,255,255,.08),
-    inset 0 -16px 22px rgba(91,58,28,.08);
-}
-
-
-/* =========================
-   PALETTE MARE & TRANQUILLITA
-   Tonalita: sabbia chiara, acqua marina, salvia fredda, blu profondo.
-========================= */
-:root{
-  --ivory:#f4f1e8;
-  --paper:#fffaf1;
-  --gold:#9fb7ad;
-  --gold2:#3f7f83;
-  --ink:#20333a;
-  --muted:#6d817f;
-  --sage:#82a79e;
-  --wine:#2e6f73;
-  --dark:#0f242b;
-  --shadow:0 24px 70px rgba(18,50,58,.18);
-  --soft:0 14px 38px rgba(18,50,58,.11);
-}
-
-html,body{
-  background:#eef5f1 !important;
-  color:var(--ink) !important;
-}
-
-body{
-  background:
-    radial-gradient(circle at 16% 7%,rgba(255,255,255,.82),transparent 30%),
-    radial-gradient(circle at 88% 12%,rgba(124,184,185,.22),transparent 34%),
-    linear-gradient(135deg,#f7f1e5 0%,#e4efe9 48%,#c9dedb 100%) !important;
-}
-
-body::before,
-.section::before,
-.intro::before{
-  opacity:.15 !important;
-  background-image:
-    linear-gradient(rgba(48,100,105,.10) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(48,100,105,.08) 1px,transparent 1px) !important;
-}
-
-.intro{
-  background:
-    radial-gradient(circle at 50% 18%,rgba(255,255,255,.72),transparent 30%),
-    radial-gradient(circle at 82% 30%,rgba(125,183,184,.22),transparent 34%),
-    linear-gradient(145deg,#f7f0e4 0%,#dbece6 55%,#c5dbd9 100%) !important;
-}
-
-.intro-kicker,
-.open-label,
-.hint,
-.intro-title small{
-  color:rgba(32,51,58,.56) !important;
-}
-
-.intro-names,
-.intro-title span,
-.title,
-.display,
-.event-v{
-  color:#1e3138 !important;
-}
-
-.intro-subtitle,
-.intro-title em,
-.display em,
-.eyebrow,
-.event-k,
-.icon,
-.pill{
-  color:#3f7f83 !important;
+.section-content{
+  width:min(420px,100%) !important;
+  padding:18px 2px 26px !important;
 }
 
 .card{
+  border-radius:34px !important;
+  overflow:hidden !important;
+  isolation:isolate !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  box-shadow:none !important;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.68),rgba(244,251,247,.48)) !important;
-  border-color:rgba(63,127,131,.20) !important;
-  box-shadow:var(--shadow) !important;
+    linear-gradient(180deg,rgba(255,255,255,.82),rgba(244,251,247,.62)) !important;
+  border:1px solid rgba(47,116,122,.20) !important;
 }
 
 .card::before{
-  border-color:rgba(63,127,131,.18) !important;
+  border-radius:24px !important;
+  box-shadow:none !important;
 }
 
-.divider{
-  background:linear-gradient(90deg,transparent,#7dafaa,transparent) !important;
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.58),
+    inset 0 -18px 34px rgba(18,50,58,.045);
+  z-index:1;
 }
 
-.lead{color:rgba(32,51,58,.78) !important;}
-.small,.event-s{color:#6d817f !important;}
-
-.pill{
-  background:rgba(125,175,170,.14) !important;
-  border-color:rgba(63,127,131,.24) !important;
+.inner,
+.photo,
+.location-card{
+  position:relative !important;
+  z-index:3 !important;
 }
 
-.icon{
-  background:rgba(125,175,170,.15) !important;
+.photo{
+  box-shadow:none !important;
 }
 
+.location-card,
+.quote,
 .event-item,
-.quote{
-  background:rgba(255,255,255,.52) !important;
-  border-color:rgba(63,127,131,.18) !important;
+.polaroid{
+  box-shadow:none !important;
 }
 
-.quote{color:#29494f !important;}
-
-.btn-map{
-  background:rgba(255,255,255,.86) !important;
-  color:#20333a !important;
-  border-color:rgba(63,127,131,.18) !important;
+/* piccolo alone morbido separato, rotondo e non rettangolare */
+.card-wrap-shadow{
+  display:none;
 }
 
-.btn-wa{
-  background:linear-gradient(135deg,#5aaea4,#2d7f82) !important;
-  color:#fff !important;
+@media(max-width:390px){
+  .section{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+  .section-content{
+    width:min(410px,100%) !important;
+    padding:16px 2px 24px !important;
+  }
 }
-
-.dot{background:rgba(63,127,131,.26) !important;}
-.dot.active{background:#3f7f83 !important;}
-.nav-btn{
-  background:rgba(246,251,247,.76) !important;
-  border-color:rgba(63,127,131,.22) !important;
-  color:#20333a !important;
-}
-
-/* Busta: sabbia marina, texture leggera e ombre piu morbide */
-.envelope{
-  filter:drop-shadow(0 24px 30px rgba(24,55,62,.20)) !important;
-}
-
-.envelope-body{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.18),transparent 30%),
-    linear-gradient(145deg,#e7cfaa 0%,#d1b17f 53%,#b99362 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.48),
-    inset 0 -18px 30px rgba(82,56,33,.12),
-    0 18px 34px rgba(27,58,65,.17) !important;
-}
-
-.envelope-body::before,
-.envelope-body::after{
-  background:linear-gradient(145deg,rgba(255,255,255,.20),transparent 38%),linear-gradient(145deg,#e5c89c,#b78d5d) !important;
-}
-
-.envelope-flap{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.28),transparent 42%),
-    linear-gradient(145deg,#ead4b1 0%,#c69f6a 100%) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.5),
-    0 8px 15px rgba(63,49,34,.10) !important;
-}
-
-.envelope-texture{
-  opacity:.18 !important;
-  background-image:
-    radial-gradient(circle at 26% 34%,rgba(85,64,41,.13) 0 1px,transparent 1.5px),
-    radial-gradient(circle at 76% 68%,rgba(255,255,255,.25) 0 1px,transparent 1.5px) !important;
-}
-
-.envelope-creases{
-  opacity:.13 !important;
-  background:
-    linear-gradient(29deg,transparent 49.86%,rgba(70,52,34,.12) 50%,transparent 50.14%),
-    linear-gradient(-29deg,transparent 49.86%,rgba(255,255,255,.14) 50%,transparent 50.14%) !important;
-}
-
-.paper{
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.98),rgba(244,250,247,.98)),
-    repeating-linear-gradient(0deg,transparent 0 17px,rgba(63,127,131,.06) 18px) !important;
-  box-shadow:0 14px 32px rgba(28,60,66,.16),inset 0 0 0 1px rgba(63,127,131,.16) !important;
-}
-
-.paper-title{color:#3f7f83 !important;}
-.paper-subtitle{color:rgba(32,51,58,.50) !important;}
-
-/* Timbro in ceralacca color acqua profonda: lucido ma piu coerente col mood mare */
-.envelope-seal{
-  background:
-    radial-gradient(circle at 32% 25%,rgba(255,255,255,.36),transparent 16%),
-    radial-gradient(circle at 62% 74%,rgba(7,42,47,.30),transparent 32%),
-    linear-gradient(145deg,#4c9aa0 0%,#235d63 55%,#163f46 100%) !important;
-  color:#eaf8f4 !important;
-  box-shadow:
-    0 8px 16px rgba(16,48,55,.28),
-    inset 0 2px 5px rgba(255,255,255,.25),
-    inset 0 -8px 12px rgba(7,31,36,.30),
-    0 0 0 4px rgba(35,93,99,.16) !important;
-}
-
-.envelope-seal::before{
-  border-color:rgba(232,252,247,.45) !important;
-}
-
-.location-card{background:#102d34 !important;}
-.location-img::after{background:linear-gradient(transparent 18%,rgba(9,34,40,.82)) !important;}
 
 </style>
 </head>
 <body>
 <div class="app">
-<section class="intro" id="intro" aria-label="Apertura invito">
-  <div class="intro-bg"></div>
-
-  <div class="intro-heading">
-    <div class="intro-kicker">Sei invitato</div>
-    <div class="intro-names">Francesca &amp; Luca</div>
-    <div class="intro-subtitle">25 anni insieme</div>
-  </div>
-
-  <button class="envelope" id="openEnvelope" type="button" aria-label="Apri l'invito">
-    <div class="paper">
-      <div class="paper-content">
-        <div class="paper-title">Francesca &amp; Luca</div>
-        <div class="paper-subtitle">25 anni insieme</div>
-      </div>
+  <section class="intro" id="intro" aria-label="Apertura invito">
+    <div class="intro-bg"></div>
+    <div class="intro-heading">
+      <div class="intro-kicker">Sei invitato</div>
+      <div class="intro-names">Francesca &amp; Luca</div>
+      <div class="intro-subtitle">25 anni insieme</div>
     </div>
+    <button class="envelope" id="openEnvelope" type="button" aria-label="Apri l'invito">
+      <div class="paper"><div class="paper-content"><div class="paper-title">Francesca &amp; Luca</div><div class="paper-subtitle">25 anni insieme</div></div></div>
+      <div class="env-shell"><div class="env-back"></div><div class="env-flap"></div><div class="env-pocket"></div><div class="seal"><span>F&amp;L</span></div></div>
+    </button>
+    <div class="hint">Tocca per aprire</div>
+  </section>
 
-    <div class="envelope-body">
-      <div class="envelope-flap"></div>
-      <div class="envelope-texture"></div>
-      <div class="envelope-creases"></div>
-      <div class="envelope-seal"><span>F&amp;L</span></div>
+  <main class="main" id="main" aria-label="Invito digitale">
+    <div class="slides" id="slides">
+      <section class="section active" data-step="0"><div class="section-content"><div class="card reveal"><div class="photo"><img src="https://www.chiarentana.com/public/Files/rif000002/157/cuore-coppia.jpg" alt="Francesca e Luca"></div><div class="inner"><div class="pill">25° Anniversario</div><h2 class="display">Francesca<em>&amp; Luca</em></h2><div class="divider"></div><p class="lead">Venticinque anni insieme. Un viaggio fatto di sorrisi, piccoli gesti, emozioni, sfide superate e tantissimo amore.</p><p class="small">Oggi desideriamo condividere questo traguardo con le persone che hanno fatto parte della nostra storia.</p></div></div></div></section>
+      <section class="section" data-step="1"><div class="section-content"><div class="card reveal"><div class="inner"><p class="eyebrow">Il nostro invito</p><h2 class="title">Saremo felici di avervi con noi</h2><div class="divider"></div><p class="lead">Ci sono momenti che meritano di essere celebrati insieme.</p><p class="lead">Dopo venticinque anni di matrimonio, abbiamo il desiderio di brindare insieme alle persone che più ci stanno a cuore.</p><p class="lead">Vi aspettiamo per una piacevole serata, tra sorrisi, ricordi e un elegante <strong>apericena</strong>.</p><div class="pill">8 Settembre 2026</div></div></div></div></section>
+      <section class="section" data-step="2"><div class="section-content"><div class="card reveal"><div class="photo"><img src="https://www.aloharicevimenti.it/wp-content/uploads/2019/01/matrimonio.jpg" alt="Ricordo di Francesca e Luca"></div><div class="inner"><p class="eyebrow">Una storia</p><h2 class="title">25 anni di emozioni</h2><p class="lead">Ogni sorriso, ogni viaggio, ogni piccolo momento ci ha portati fin qui.</p><p class="small">Il regalo più bello sarà poter condividere questa serata insieme a voi.</p></div></div></div></section>
+      <section class="section" data-step="3"><div class="section-content"><div class="card reveal"><div class="inner"><p class="eyebrow">I nostri ricordi</p><h2 class="title">Una storia scritta con il cuore</h2><div class="divider"></div><div class="gallery"><div class="polaroids"><div class="polaroid"><img src="https://compass-media.vogue.it/photos/69e2330c91737a9c9d342665/2:3/w_2560%2Cc_limit/RIGHI31-BRIDGET&ROBERT27033U5A0425.jpg" alt="Ricordo"></div><div class="polaroid"><img src="https://www.sposipersempre.it/wp-content/uploads/2015/04/scambio-delle-promesse-di-Matrimonio.jpg" alt="Ricordo"></div></div><div class="quote">“Le fotografie fermano il tempo, ma sono le persone a renderlo indimenticabile.”</div><div class="photo" style="border-radius:28px"><img src="https://www.laceandfavour.com/_cache/_blocks/1000x0/286.jpg" alt="Francesca e Luca"></div></div></div></div></div></section>
+      <section class="section" data-step="4"><div class="section-content"><div class="card reveal"><div class="inner"><p class="eyebrow">Il giorno della festa</p><h2 class="title">Vi aspettiamo</h2><p class="lead">Sarà una serata speciale, ricca di sorrisi, abbracci, brindisi e ricordi.</p><div class="event-list"><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div><div class="event-k">Data</div><div class="event-v">8 Settembre 2026</div></div></div><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><div class="event-k">Orario</div><div class="event-v">19:30</div><div class="event-s">Start</div></div></div><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0L8 3Z"/><path d="M12 13v7M9 20h6"/></svg></div><div><div class="event-k">Apericena</div><div class="event-v">Brindisi &amp; Buffet</div><div class="event-s">Musica, sapori e tanti ricordi.</div></div></div></div></div></div></div></section>
+      <section class="section" data-step="5"><div class="section-content"><div class="card reveal"><div class="inner"><p class="eyebrow">La location</p><h2 class="title">Ci vediamo qui</h2><div class="divider"></div><div class="location-card"><div class="location-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbQZJlP6fR_XSpnA6cJ32q5qrU0ZtYwzOChA&s" alt="Location"><div class="location-name"><h3>Terrazza Experience</h3><p>By Lido la Scala.</p></div></div></div><div class="cta"><a class="btn btn-map" href="https://maps.app.goo.gl/Qdfp6nx1k4V7eNDb6?g_st=ic" target="_blank" rel="noopener">Apri su Google Maps</a><a class="btn btn-wa" href="https://wa.me/393463603202?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20all'anniversario%20di%20Francesca%20e%20Luca.%20Non%20vediamo%20l'ora%20di%20festeggiare%20insieme!%20❤️" target="_blank" rel="noopener">Conferma su WhatsApp</a></div><p class="small" style="margin-top:22px">Non vediamo l'ora di festeggiare insieme a voi!</p></div></div></div></section>
     </div>
-  </button>
-
-  <div class="hint">Tocca per aprire</div>
-</section>
-<main class="main" id="main">
-<section class="section hero" data-step="0"><div class="card reveal"><div class="photo"><img src="https://www.chiarentana.com/public/Files/rif000002/157/cuore-coppia.jpg" alt="Francesca e Luca"></div><div class="inner"><div class="pill">25° Anniversario</div><h2 class="display">Francesca<em>& Luca</em></h2><div class="divider"></div><p class="lead">Venticinque anni insieme. Un viaggio fatto di sorrisi, piccoli gesti, emozioni, sfide superate e tantissimo amore.</p><p class="small">Oggi desideriamo condividere questo traguardo con le persone che hanno fatto parte della nostra storia.</p></div></div></section>
-<section class="section" data-step="1"><div class="card reveal"><div class="inner"><p class="eyebrow">Il nostro invito</p><h2 class="title">Saremo felici di avervi con noi</h2><div class="divider"></div><p class="lead">Ci sono momenti che meritano di essere celebrati insieme.</p><p class="lead">Dopo venticinque anni di matrimonio, abbiamo il desiderio di brindare insieme alle persone che più ci stanno a cuore.</p><p class="lead">Vi aspettiamo per una piacevole serata, tra sorrisi, ricordi e un elegante <strong>apericena</strong>.</p><div class="pill">8 Settembre 2026</div></div></div></section>
-<section class="section" data-step="2"><div class="card reveal"><div class="photo"><img src="https://www.aloharicevimenti.it/wp-content/uploads/2019/01/matrimonio.jpg" alt="Ricordo di Francesca e Luca"></div><div class="inner"><p class="eyebrow">Una storia</p><h2 class="title">25 anni di emozioni</h2><p class="lead">Ogni sorriso, ogni viaggio, ogni piccolo momento ci ha portati fin qui.</p><p class="small">Il regalo più bello sarà poter condividere questa serata insieme a voi.</p></div></div></section>
-<section class="section" data-step="3"><div class="card reveal"><div class="inner"><p class="eyebrow">I nostri ricordi</p><h2 class="title">Una storia scritta con il cuore</h2><div class="divider"></div><div class="gallery"><div class="polaroids"><div class="polaroid"><img src="https://compass-media.vogue.it/photos/69e2330c91737a9c9d342665/2:3/w_2560%2Cc_limit/RIGHI31-BRIDGET&ROBERT27033U5A0425.jpg" alt="Ricordo"></div><div class="polaroid"><img src="https://www.sposipersempre.it/wp-content/uploads/2015/04/scambio-delle-promesse-di-Matrimonio.jpg" alt="Ricordo"></div></div><div class="quote">“Le fotografie fermano il tempo, ma sono le persone a renderlo indimenticabile.”</div><div class="photo" style="border-radius:28px"><img src="https://www.laceandfavour.com/_cache/_blocks/1000x0/286.jpg" alt="Francesca e Luca"></div></div></div></div></section>
-<section class="section" data-step="4"><div class="card reveal"><div class="inner"><p class="eyebrow">Il giorno della festa</p><h2 class="title">Vi aspettiamo</h2><p class="lead">Sarà una serata speciale, ricca di sorrisi, abbracci, brindisi e ricordi.</p><div class="event-list"><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><div><div class="event-k">Data</div><div class="event-v">8 Settembre 2026</div></div></div><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><div class="event-k">Orario</div><div class="event-v">19:30</div><div class="event-s">Start</div></div></div><div class="event-item"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0L8 3Z"/><path d="M12 13v7M9 20h6"/></svg></div><div><div class="event-k">Apericena</div><div class="event-v">Brindisi & Buffet</div><div class="event-s">Musica, sapori e tanti ricordi.</div></div></div></div></div></div></section>
-<section class="section" data-step="5"><div class="card reveal"><div class="inner"><p class="eyebrow">La location</p><h2 class="title">Ci vediamo qui</h2><div class="divider"></div><div class="location-card"><div class="location-img"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbQZJlP6fR_XSpnA6cJ32q5qrU0ZtYwzOChA&s" alt="Location"><div class="location-name"><h3>Terrazza Experience</h3><p>By Lido la Scala.</p></div></div></div><div class="cta"><a class="btn btn-map" href="https://maps.app.goo.gl/Qdfp6nx1k4V7eNDb6?g_st=ic" target="_blank" rel="noopener">Apri su Google Maps</a><a class="btn btn-wa" href="https://wa.me/393463603202?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20all'anniversario%20di%20Francesca%20e%20Luca.%20Non%20vediamo%20l'ora%20di%20festeggiare%20insieme!%20❤️" target="_blank" rel="noopener">Conferma su WhatsApp</a></div><p class="small" style="margin-top:22px">Non vediamo l'ora di festeggiare insieme a voi!</p></div></div></section>
-</main>
-<<nav class="step-nav" id="stepNav" aria-label="Navigazione sezioni"></nav>
-<div class="bottom-nav"><button class="nav-btn" id="prevBtn" type="button">Indietro</button><button class="nav-btn" id="nextBtn" type="button">Avanti</button></div>
+  </main>
+  <nav class="step-nav" id="stepNav" aria-label="Navigazione sezioni"></nav>
 </div>
 <script>
-const intro=document.getElementById('intro');const openEnvelope=document.getElementById('openEnvelope');const main=document.getElementById('main');let opened=false;function openInvite(){if(opened)return;opened=true;openEnvelope.classList.add('open');setTimeout(()=>document.body.classList.add('invite-open'),850);setTimeout(()=>{intro.classList.add('hidden');main.scrollTo({top:0,behavior:'smooth'});},1850)}openEnvelope.addEventListener('click',openInvite);document.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')openInvite()});
-const sections=[...document.querySelectorAll('.section')];const stepNav=document.getElementById('stepNav');let current=0;sections.forEach((_,i)=>{const b=document.createElement('button');b.className='dot';b.type='button';b.setAttribute('aria-label','Vai alla sezione '+(i+1));b.addEventListener('click',()=>goTo(i));stepNav.appendChild(b)});const dots=[...document.querySelectorAll('.dot')];function setActive(i){current=Math.max(0,Math.min(sections.length-1,i));dots.forEach((d,idx)=>d.classList.toggle('active',idx===current))}function goTo(i){sections[i].scrollIntoView({behavior:'smooth',block:'start'})}document.getElementById('prevBtn').addEventListener('click',()=>goTo(current-1));document.getElementById('nextBtn').addEventListener('click',()=>goTo(current+1));const sectionObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){setActive(sections.indexOf(entry.target))}})},{root:main,threshold:.58});sections.forEach(s=>sectionObserver.observe(s));setActive(0);
-const revealItems=document.querySelectorAll('.reveal,.event-item,.polaroid,.quote,.location-card');const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})},{root:main,threshold:.18});revealItems.forEach(i=>revealObserver.observe(i));
-let startY=0;main.addEventListener('touchstart',e=>{startY=e.touches[0].clientY},{passive:true});main.addEventListener('touchend',e=>{const endY=e.changedTouches[0].clientY;const diff=startY-endY;if(Math.abs(diff)>70){if(diff>0)goTo(current+1);else goTo(current-1)}} ,{passive:true});
+const intro=document.getElementById('intro');
+const openEnvelope=document.getElementById('openEnvelope');
+const main=document.getElementById('main');
+const slides=document.getElementById('slides');
+const sections=[...document.querySelectorAll('.section')];
+const stepNav=document.getElementById('stepNav');
+let opened=false;
+let current=0;
+let lock=false;
+let touchStartY=0;
+
+sections.forEach((_,i)=>{
+  const dot=document.createElement('button');
+  dot.type='button';
+  dot.className='dot';
+  dot.setAttribute('aria-label','Vai alla sezione '+(i+1));
+  dot.addEventListener('click',()=>goTo(i));
+  stepNav.appendChild(dot);
+});
+const dots=[...document.querySelectorAll('.dot')];
+
+function openInvite(){
+  if(opened)return;
+  opened=true;
+  openEnvelope.classList.add('open');
+  setTimeout(()=>document.body.classList.add('invite-open'),650);
+  setTimeout(()=>intro.classList.add('hidden'),1650);
+}
+
+function setActive(){
+  slides.style.transform=`translateY(${-current*100}dvh)`;
+  sections.forEach((s,i)=>s.classList.toggle('active',i===current));
+  dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+}
+
+function goTo(index){
+  const next=Math.max(0,Math.min(sections.length-1,index));
+  if(next===current || lock)return;
+  lock=true;
+  current=next;
+  setActive();
+  setTimeout(()=>lock=false,620);
+}
+
+function canLeaveSection(direction){
+  const scroller=sections[current].querySelector('.section-content');
+  if(!scroller)return true;
+  const max=scroller.scrollHeight-scroller.clientHeight;
+  if(max<=2)return true;
+  if(direction>0)return scroller.scrollTop>=max-6;
+  return scroller.scrollTop<=6;
+}
+
+openEnvelope.addEventListener('click',openInvite);
+document.addEventListener('keydown',e=>{
+  if(!opened && (e.key==='Enter'||e.key===' ')){openInvite();return;}
+  if(!document.body.classList.contains('invite-open'))return;
+  if(e.key==='ArrowDown'||e.key==='PageDown')goTo(current+1);
+  if(e.key==='ArrowUp'||e.key==='PageUp')goTo(current-1);
+});
+
+main.addEventListener('wheel',e=>{
+  if(!document.body.classList.contains('invite-open'))return;
+  const direction=e.deltaY>0?1:-1;
+  if(canLeaveSection(direction)){
+    e.preventDefault();
+    goTo(current+direction);
+  }
+},{passive:false});
+
+main.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY},{passive:true});
+main.addEventListener('touchend',e=>{
+  if(!document.body.classList.contains('invite-open'))return;
+  const diff=touchStartY-e.changedTouches[0].clientY;
+  if(Math.abs(diff)<58)return;
+  const direction=diff>0?1:-1;
+  if(canLeaveSection(direction))goTo(current+direction);
+},{passive:true});
+
+setActive();
 </script>
 </body>
 </html>
